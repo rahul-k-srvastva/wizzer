@@ -1,0 +1,20 @@
+FROM node:20.15.1-alpine
+
+WORKDIR /usr/src/app/
+
+COPY ../package*.json ../turbo.json ./
+
+COPY ../apps/bank_webhook_handler ./apps/bank_webhook_handler
+
+COPY ../packages/db ./packages/db
+COPY ../packages/typescript-config ./packages/typescript-config
+
+RUN npm install
+RUN npm run db:generate
+RUN npm run build
+
+EXPOSE 3002
+
+ENV DATABASE_URL=""
+
+CMD [ "npm" , "run" , "start-webhook-app"]

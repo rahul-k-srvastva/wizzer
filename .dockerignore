@@ -1,0 +1,9 @@
+*.env
+node_modules
+user-app/node_modules
+merchant-app/node_modules
+bank_webhook_handler/node_modules
+user-app/.next
+user-app/.turbo
+merchant-app/.turbo
+merchant-app/.next

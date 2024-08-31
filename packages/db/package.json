@@ -1,0 +1,21 @@
+{
+  "name": "@repo/db",
+  "version": "1.0.0",
+  "prisma" : {
+    "seed" : "ts-node prisma/seed.ts"
+  },
+  "scripts": {
+    "db:migrate": "prisma migrate dev",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push --skip-generate"
+  },
+  "devDependencies": {
+    "prisma": "^5.18.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.18.0"
+  },
+  "exports" : {
+    "." : "./src/index.ts"
+  }
+}

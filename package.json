@@ -1,0 +1,27 @@
+{
+  "name": "paytm",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db:generate" : "cd ./packages/db && npm run db:generate",
+    "start-user-app" : "cd ./apps/user-app && npm start",
+    "start-merchant-app" : "cd ./apps/merchant-app && npm start",
+    "start-webhook-app" : "cd ./apps/bank_webhook_handler && npm start"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "turbo": "^2.0.12",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@10.7.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
