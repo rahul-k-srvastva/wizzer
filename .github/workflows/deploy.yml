@@ -1,0 +1,40 @@
+name: Build-Push Image and Deploy AWS
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Login to dockerhub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Build user app Image and Push to Dockerhub
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./docker/Dockerfile.user 
+          push: true
+          tags: rahulsrvastva/wizzer-user-app:latest
+
+      - name: Build webhook Image and Push to Dockerhub
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./docker/Dockerfile.webhook
+          push: true
+          tags: rahulsrvastva/wizzer-webhook-app:latest
+
+      - name: Verify Pushed user-app Image
+        run: docker pull rahulsrvastva/wizzer-user-app:latest
+
+      - name: Verify Pushed webhook-app Image
+        run: docker pull rahulsrvastva/wizzer-webhook-app:latest
