@@ -52,5 +52,5 @@ jobs:
             sudo docker rm user-app || true
             sudo docker stop webhook-app || true
             sudo docker rm webhook-app || true
-            sudo docker run -d -p 3000:3000 --name user-app -e DATABASE_URL=${{ secrets.DATABASE_URL }} -e NEXTAUTH_URL=${{ env.NEXTAUTH_URL }} -e NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} rahulsrvastva/wizzer-user-app:latest
+            sudo docker run -d -p 3000:3000 --name user-app -e DATABASE_URL=${{ secrets.DATABASE_URL }} -e NEXTAUTH_URL=${{ vars.NEXTAUTH_URL }} -e NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} rahulsrvastva/wizzer-user-app:latest
             sudo docker run -d -p 3002:3002 --name webhook-app -e DATABASE_URL=${{ secrets.DATABASE_URL }} rahulsrvastva/wizzer-webhook-app:latest
