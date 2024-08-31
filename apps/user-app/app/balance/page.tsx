@@ -19,5 +19,5 @@ export default function Balance() {
   </div>
   }
 
-  return <div>{balance}</div>;
+  return <div>{"Your Balance is" + balance}</div>;
 }
